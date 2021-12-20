@@ -1,13 +1,18 @@
 package com.foot.poc.service;
 
+import com.foot.poc.model.ConfirmationToken;
 import com.foot.poc.model.User;
 import com.foot.poc.repository.UserRepository;
 import com.foot.poc.security.PasswordEncoder;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -15,8 +20,14 @@ public class UserService implements UserDetailsService {
 
     private final static String USER_NOT_FOUND = "User with email %s not found";
 
-    private UserRepository userRepository;
+    @Autowired
+    private final UserRepository userRepository;
+
+    @Autowired
     private final PasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private final ConfirmationTokenService confirmationTokenService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -35,8 +46,22 @@ public class UserService implements UserDetailsService {
         this.userRepository.save(user);
 
         //TODO: Confirmation token
+        String token = UUID.randomUUID().toString();
+        ConfirmationToken confirmationToken = new ConfirmationToken(
+                token,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15),
+                user
+        );
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
 
-        return "User registered and password encoded successfully";
+        //TODO: Send email
+
+        return token;
+    }
+
+    public int enableUser(String email){
+        return userRepository.enableUser(email);
     }
 
 }

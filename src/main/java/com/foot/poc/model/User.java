@@ -20,8 +20,9 @@ import java.util.Objects;
 @NoArgsConstructor
 public class User implements UserDetails {
 
+    @SequenceGenerator(name = "user_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     private Long id;
 
     private String userName;
@@ -34,8 +35,8 @@ public class User implements UserDetails {
     private String address;
     private String phoneNumber;
 
-    private Boolean locked;
-    private Boolean enabled;
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
     public User(String userName,
                 String email,
