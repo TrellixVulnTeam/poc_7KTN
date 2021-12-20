@@ -1,71 +1,104 @@
 package com.foot.poc.model;
 
 
+import com.foot.poc.utils.UserRole;
+import lombok.*;
+import org.hibernate.Hibernate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Objects;
 
 @Entity
-public class User {
+@Getter
+@Setter
+@NoArgsConstructor
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     private String userName;
+    private String email;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
+
     private LocalDate birthday;
     private String address;
-    private String email;
     private String phoneNumber;
 
+    private Boolean locked;
+    private Boolean enabled;
 
-    public User() {
+    public User(String userName,
+                String email,
+                String password,
+                UserRole userRole,
+                LocalDate birthday,
+                String address,
+                String phoneNumber) {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.userRole = userRole;
+        this.birthday = birthday;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
-    public Long getUserId() {
-        return userId;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        User user = (User) o;
+        return id != null && Objects.equals(id, user.id);
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 
-    public String getUserName() {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.name());
+        return Collections.singletonList(authority);
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public LocalDate getBirthday() {
-        return birthday;
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
     }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 }
