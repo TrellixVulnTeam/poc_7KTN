@@ -49,8 +49,8 @@ public class RegistrationService {
 
         ConfirmationToken confirmationToken = confirmTokenService.getToken(token);
 
-        if (confirmationToken.getConfirmedAt() != null) {
-            throw new IllegalStateException("Email already confirmed");
+        if (confirmationToken.getUser().isAccountNonLocked() == false) {
+            throw new IllegalStateException("Account locked, Please confirm your account before signing in");
         }
 
         if (confirmationToken.getExpiresAt().isBefore(LocalDateTime.now())){

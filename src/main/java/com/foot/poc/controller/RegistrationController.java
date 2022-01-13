@@ -20,4 +20,8 @@ public class RegistrationController {
         return registrationService.register(request);
     }
 
+    @GetMapping("/confirm")
+    public String confirmToken(@RequestParam("token") String token){
+        return registrationService.confirmToken(token);
+    }
 }
