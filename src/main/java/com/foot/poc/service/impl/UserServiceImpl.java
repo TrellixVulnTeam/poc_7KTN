@@ -1,4 +1,4 @@
-package com.foot.poc.service;
+package com.foot.poc.service.impl;
 
 import com.foot.poc.model.ConfirmationToken;
 import com.foot.poc.model.User;
@@ -12,11 +12,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserServiceImpl implements UserDetailsService {
 
     private final static String USER_NOT_FOUND = "User with email %s not found";
 
@@ -60,8 +61,11 @@ public class UserService implements UserDetailsService {
         return token;
     }
 
-    public int enableUser(String email){
+    public int enableUser(String email) {
         return userRepository.enableUser(email);
     }
 
+    public Collection<User> findAllUsers() {
+        return this.userRepository.findAll();
+    }
 }

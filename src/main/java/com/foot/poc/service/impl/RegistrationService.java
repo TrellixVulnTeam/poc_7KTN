@@ -1,4 +1,4 @@
-package com.foot.poc.service;
+package com.foot.poc.service.impl;
 
 import com.foot.poc.model.ConfirmationToken;
 import com.foot.poc.model.RegistrationRequest;
@@ -19,7 +19,7 @@ public class RegistrationService {
     private final EmailValidator emailValidator;
 
     @Autowired
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
     @Autowired
     private final ConfirmationTokenService confirmTokenService;
@@ -31,7 +31,7 @@ public class RegistrationService {
             throw new IllegalStateException("Email not valid");
         }
 
-        return userService.signUp(
+        return userServiceImpl.signUp(
                 new User(
                         request.getUserName(),
                         request.getEmail(),
@@ -58,7 +58,7 @@ public class RegistrationService {
         }
 
         confirmTokenService.setConfirmedAt(token);
-        userService.enableUser(confirmationToken.getUser().getEmail());
+        userServiceImpl.enableUser(confirmationToken.getUser().getEmail());
 
         return "Confirmed";
 

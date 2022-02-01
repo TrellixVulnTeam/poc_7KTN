@@ -1,7 +1,6 @@
 package com.foot.poc.security;
-import com.foot.poc.service.UserService;
+import com.foot.poc.service.impl.UserServiceImpl;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -9,8 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import com.foot.poc.security.PasswordEncoder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @EnableWebSecurity
@@ -18,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
     private final PasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -26,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/registration", "/registration/confirm")
+                .antMatchers("/registration", "/registration/confirm", "/users", "/meetups")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -42,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
     public DaoAuthenticationProvider daoAuthenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(bCryptPasswordEncoder.bCryptPasswordEncoder());
-        provider.setUserDetailsService(userService);
+        provider.setUserDetailsService(userServiceImpl);
 
         return provider;
     }
