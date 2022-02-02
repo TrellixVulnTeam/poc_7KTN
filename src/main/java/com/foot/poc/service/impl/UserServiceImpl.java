@@ -21,23 +21,22 @@ public class UserServiceImpl implements UserDetailsService {
 
     private final static String USER_NOT_FOUND = "User with email %s not found";
 
-    @Autowired
-    private final UserRepository userRepository;
-
+    // <----                              Security
     @Autowired
     private final PasswordEncoder bCryptPasswordEncoder;
-
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private final ConfirmationTokenService confirmationTokenService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
-                .orElseThrow(()-> new UsernameNotFoundException(String.format(USER_NOT_FOUND, email)));
+        return this.userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND, email)));
     }
 
-    public String signUp(User user){
-        boolean userExits = userRepository.findByEmail(user.getEmail()).isPresent();
+    public String signUp(User user) {
+        boolean userExits = this.userRepository.findByEmail(user.getEmail()).isPresent();
 
         if (userExits) {
             throw new IllegalStateException("Email already used !");
@@ -62,10 +61,45 @@ public class UserServiceImpl implements UserDetailsService {
     }
 
     public int enableUser(String email) {
-        return userRepository.enableUser(email);
+        return this.userRepository.enableUser(email);
     }
+    //                                                                                      ---->
+
 
     public Collection<User> findAllUsers() {
         return this.userRepository.findAll();
     }
+
+    public void deleteUser(Long id) {
+        User user = this.userRepository.getById(id);
+        this.userRepository.delete(user);
+    }
+
+    public User addUser(User user) {
+        User newUser = new User();
+        String email = user.getEmail();
+        String address = user.getAddress();
+        String name = user.getUsername();
+        String password = user.getPassword();
+
+        newUser.setPassword(password);
+        newUser.setAddress(address);
+        newUser.setUserName(name);
+        newUser.setEmail(email);
+
+        this.userRepository.save(newUser);
+        return user;
+    }
+
+    public Long login(String email, String password) {
+        User user = this.userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND, email)));
+        String encodedPassword = this.bCryptPasswordEncoder.bCryptPasswordEncoder().encode(password);
+        if (user.getEmail().equals(email) && user.getPassword().equals(encodedPassword)) {
+            return user.getId();
+        } else {
+            throw new IllegalStateException("User already exists");
+        }
+    }
+
 }
