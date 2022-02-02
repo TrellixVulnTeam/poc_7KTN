@@ -2,7 +2,7 @@ package com.foot.poc.controller;
 
 
 import com.foot.poc.model.User;
-import com.foot.poc.service.impl.UserServiceImpl;
+import com.foot.poc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,25 +12,27 @@ import java.util.Collection;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @GetMapping("users")
     Collection<User> findAllUsers() {
         return this.userService.findAllUsers();
     }
 
-    @PostMapping("users")
-    User addUser(@RequestBody User newUser) {
-        return this.userService.addUser(newUser);
+    @GetMapping("users/{id}")
+    User findUser(@PathVariable Long id) {
+        return this.userService.findUser(id);
     }
 
     @DeleteMapping("users/{id}")
-    void deleteUser(@PathVariable Long id) {
+    String deleteUser(@PathVariable Long id) {
         this.userService.deleteUser(id);
+        return "User deleted !";
     }
 
-    @GetMapping("login")
-    Long login(@RequestParam String email, @RequestParam String password) {
-        return this.userService.login(email, password);
+    @PutMapping("users/{id}")
+    User editUser(@PathVariable Long id, @RequestBody User user) {
+        return this.userService.editUser(id, user);
     }
+
 }

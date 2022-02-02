@@ -33,6 +33,7 @@ public class MeetUpServiceImpl implements MeetUpService {
     @Override
     public MeetUp createMeetUp(MeetUp meetUp) {
         meetUp = new MeetUp();
+        this.meetUpRepository.save(meetUp);
         return meetUp;
     }
 

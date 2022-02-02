@@ -7,7 +7,6 @@ import java.util.Collection;
 
 public interface MeetUpService {
 
-
     Collection<MeetUp> findAllMeetUps();
 
     MeetUp findMeetUp(Long id);

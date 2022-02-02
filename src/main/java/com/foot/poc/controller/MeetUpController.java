@@ -15,7 +15,6 @@ public class MeetUpController {
     @Autowired
     private MeetUpService meetUpService;
 
-
     @GetMapping
     Collection<MeetUp> findAllMeetUps() {
         return this.meetUpService.findAllMeetUps();
@@ -30,7 +29,6 @@ public class MeetUpController {
     void deleteMeetUp(@PathVariable Long id) {
         this.meetUpService.deleteMeetUp(id);
     }
-
 
     @PostMapping()
     MeetUp createMeetUp(@RequestBody MeetUp newMeetUp) {
