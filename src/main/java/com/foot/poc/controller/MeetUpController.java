@@ -9,33 +9,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("meetups")
 public class MeetUpController {
 
     @Autowired
     private MeetUpService meetUpService;
 
 
-    @GetMapping("meetups")
+    @GetMapping
     Collection<MeetUp> findAllMeetUps() {
         return this.meetUpService.findAllMeetUps();
     }
 
-    @GetMapping("meetups/{id}")
+    @GetMapping("{id}")
     MeetUp findMeetUp(@PathVariable Long id) {
         return this.meetUpService.findMeetUp(id);
     }
 
-    @DeleteMapping("meetups/{id}")
+    @DeleteMapping("{id}")
     void deleteMeetUp(@PathVariable Long id) {
         this.meetUpService.deleteMeetUp(id);
     }
 
-    /*
-    @PostMapping("meetups")
-    MeetUp createMeetUp(@RequestBody MeetUp newMeetUp){
+
+    @PostMapping()
+    MeetUp createMeetUp(@RequestBody MeetUp newMeetUp) {
         return this.meetUpService.createMeetUp(newMeetUp);
     }
-    */
 
 }

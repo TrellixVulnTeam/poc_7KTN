@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/registration")
+@RequestMapping("registration")
 public class RegistrationController {
 
     @Autowired
