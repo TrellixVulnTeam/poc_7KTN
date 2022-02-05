@@ -40,5 +40,4 @@ public class MeetUpController {
         return meetUpService.updateMeetUp(id, meetUp);
     }
 
-
 }
