@@ -9,28 +9,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
+@RequestMapping("users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("users")
+    @GetMapping
     Collection<User> findAllUsers() {
         return this.userService.findAllUsers();
     }
 
-    @GetMapping("users/{id}")
+    @GetMapping("{id}")
     User findUser(@PathVariable Long id) {
         return this.userService.findUser(id);
     }
 
-    @DeleteMapping("users/{id}")
-    String deleteUser(@PathVariable Long id) {
-        this.userService.deleteUser(id);
-        return "User deleted !";
+    @DeleteMapping("{id}")
+    boolean deleteUser(@PathVariable Long id) {
+        return userService.deleteUser(id);
     }
 
-    @PutMapping("users/{id}")
+    @PutMapping("{id}")
     User editUser(@PathVariable Long id, @RequestBody User user) {
         return this.userService.editUser(id, user);
     }

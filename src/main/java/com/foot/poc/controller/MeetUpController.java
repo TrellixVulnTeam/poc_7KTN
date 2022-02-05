@@ -17,22 +17,28 @@ public class MeetUpController {
 
     @GetMapping
     Collection<MeetUp> findAllMeetUps() {
-        return this.meetUpService.findAllMeetUps();
+        return meetUpService.findAllMeetUps();
     }
 
     @GetMapping("{id}")
     MeetUp findMeetUp(@PathVariable Long id) {
-        return this.meetUpService.findMeetUp(id);
+        return meetUpService.findMeetUp(id);
     }
 
     @DeleteMapping("{id}")
     void deleteMeetUp(@PathVariable Long id) {
-        this.meetUpService.deleteMeetUp(id);
+        meetUpService.deleteMeetUp(id);
     }
 
-    @PostMapping()
-    MeetUp createMeetUp(@RequestBody MeetUp newMeetUp) {
-        return this.meetUpService.createMeetUp(newMeetUp);
+    @PostMapping
+    MeetUp createMeetUp(@RequestParam Long id, @RequestBody MeetUp newMeetUp) {
+        return meetUpService.createMeetUp(newMeetUp, id);
     }
+
+    @PutMapping("{id}")
+    MeetUp updateMeetUp(@PathVariable Long id, @RequestBody MeetUp meetUp) {
+        return meetUpService.updateMeetUp(id, meetUp);
+    }
+
 
 }

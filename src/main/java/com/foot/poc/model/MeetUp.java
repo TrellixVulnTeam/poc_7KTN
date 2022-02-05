@@ -1,6 +1,7 @@
 package com.foot.poc.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,33 +13,26 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 public class MeetUp {
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate date;
-
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User host;
+    private Long hostId;
 
     @OneToMany
     private Set<User> guests;
-
     private String firstTeam;
     private String secondTeam;
-
 
     public MeetUp() {
         this.guests = new HashSet<>();
     }
 
-    public Long getId() {
-        return id;
+    public void addGuest(User guest) {
+        this.guests.add(guest);
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

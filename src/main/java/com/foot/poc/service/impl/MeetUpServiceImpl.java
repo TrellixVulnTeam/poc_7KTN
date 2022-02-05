@@ -31,11 +31,20 @@ public class MeetUpServiceImpl implements MeetUpService {
     }
 
     @Override
-    public MeetUp createMeetUp(MeetUp meetUp) {
-        meetUp = new MeetUp();
+    public MeetUp createMeetUp(MeetUp meetUp, Long id) {
+        meetUp.setHostId(id);
         this.meetUpRepository.save(meetUp);
         return meetUp;
     }
 
+    @Override
+    public MeetUp updateMeetUp(Long id, MeetUp meetUp) {
+
+        MeetUp oldMeetUp = meetUpRepository.getById(id);
+        oldMeetUp = meetUp;
+        this.meetUpRepository.save(oldMeetUp);
+        return oldMeetUp;
+
+    }
 
 }

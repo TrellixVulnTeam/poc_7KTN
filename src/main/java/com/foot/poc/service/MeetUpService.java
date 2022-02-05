@@ -13,6 +13,8 @@ public interface MeetUpService {
 
     void deleteMeetUp(Long id);
 
-    MeetUp createMeetUp(MeetUp meetUp);
+    MeetUp createMeetUp(MeetUp meetUp, Long id);
+
+    MeetUp updateMeetUp(Long id, MeetUp meetUp);
 
 }

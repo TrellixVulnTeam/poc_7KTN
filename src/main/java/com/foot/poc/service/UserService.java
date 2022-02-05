@@ -10,7 +10,7 @@ public interface UserService {
 
     User findUser(Long id);
 
-    void deleteUser(Long id);
+    boolean deleteUser(Long id);
 
     String signUp(User user);
 

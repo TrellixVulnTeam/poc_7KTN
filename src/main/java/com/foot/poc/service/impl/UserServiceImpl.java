@@ -3,7 +3,6 @@ package com.foot.poc.service.impl;
 import com.foot.poc.model.User;
 import com.foot.poc.repository.UserRepository;
 import com.foot.poc.service.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,6 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 @Service
-@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
 
@@ -25,7 +23,6 @@ public class UserServiceImpl implements UserService {
         if (userExits) {
             throw new IllegalStateException("Email already used !");
         }
-
         user.setJoined(LocalDate.now());
         this.userRepository.save(user);
         return "User created successfully";
@@ -42,9 +39,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Long id) {
-        User user = this.userRepository.getById(id);
-        this.userRepository.delete(user);
+    public boolean deleteUser(Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
