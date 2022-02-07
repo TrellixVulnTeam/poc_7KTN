@@ -17,4 +17,6 @@ public interface MeetUpService {
 
     MeetUp updateMeetUp(Long id, MeetUp meetUp);
 
+    //MeetUp addGuest(Long id, User guest);
+
 }

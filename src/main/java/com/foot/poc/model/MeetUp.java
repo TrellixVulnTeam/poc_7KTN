@@ -26,13 +26,16 @@ public class MeetUp {
     private Set<User> guests;
     private String firstTeam;
     private String secondTeam;
+    private String location;
 
     public MeetUp() {
         this.guests = new HashSet<>();
     }
 
-    public void addGuest(User guest) {
+
+    public Set<User> addGuest(User guest) {
         this.guests.add(guest);
+        return this.guests;
     }
 
 }

@@ -2,6 +2,7 @@ package com.foot.poc.service.impl;
 
 import com.foot.poc.model.MeetUp;
 import com.foot.poc.repository.MeetUpRepository;
+import com.foot.poc.repository.UserRepository;
 import com.foot.poc.service.MeetUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class MeetUpServiceImpl implements MeetUpService {
 
     @Autowired
     private MeetUpRepository meetUpRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Collection<MeetUp> findAllMeetUps() {
@@ -46,5 +50,15 @@ public class MeetUpServiceImpl implements MeetUpService {
         return oldMeetUp;
 
     }
+/*
+    @Override
+    public MeetUp addGuest(Long id, User guest){
+        MeetUp meetUp = meetUpRepository.getById(id);
+        Set <User> guests = meetUp.getGuests();
+        guests.add(guest);
+        meetUpRepository.save(meetUp);
+        return meetUp;
+    }
 
+*/
 }

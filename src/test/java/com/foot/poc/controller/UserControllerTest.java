@@ -27,6 +27,11 @@ public class UserControllerTest {
 
     @Test
     public void testSignUp() throws Exception {
+        mockMvc.perform(get("/users")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[]"));
+
         mockMvc.perform(post("/signup")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"firstName\": \"first1\",\"lastname\": \"last1\" ,\"password\": \"password\", \"birthday\": \"1998-07-24\", \"address\": \"test\",\"email\": \"test@gmail.com\",\"phoneNumber\": \"07 60 08 80 50\"}"))
