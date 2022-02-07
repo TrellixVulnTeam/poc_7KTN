@@ -72,3 +72,19 @@ void deleteMeetUp(@PathVariable Long id)
 MeetUp updateMeetUp(@PathVariable Long id, @RequestBody MeetUp meetUp)
 ```
 
+# Launch server
+
+```bash
+ mvn spring-boot:run
+```
+
+# Database config
+
+Go to [application.yml](./src/main/resources/application.yml) and change the databse infos
+
+```yml
+datasource:
+    url: 
+    username: 
+    password: 
+```
