@@ -1,0 +1,23 @@
+<div class="center">
+    <div class="main"> 
+    <button (click)="onRefresh()">Raffraichir</button>
+    <table class="styled-table">
+        <thead>
+          <tr>
+            <th scope="col">Date du match</th>
+            <th scope="col">equipe 1</th>
+            <th scope="col">equipe 2</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let match of this.matches; let i =index">
+            <td>{{match.date}}</td>
+            <td>{{match.firstTeam}}</td>
+            <td>{{match.secondTeam}}</td>
+            <td><button (click)="onReserve(i+1)">Reserver la rencontre</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>

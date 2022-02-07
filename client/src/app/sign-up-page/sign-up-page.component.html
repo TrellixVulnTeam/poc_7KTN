@@ -1,0 +1,21 @@
+<div class="center">
+    <div class="main">  	
+        <input type="checkbox" id="chk" aria-hidden="true">
+        <div class="signup">
+        <form [formGroup]="signUpForm" method="post"  (ngSubmit)="onSignUp()">
+            <label for="chk" aria-hidden="true" class="title">S'inscrire</label>
+            <input id="fName" class="formInput" type="text" placeholder="votre prénom" formControlName="firstName">
+            <input id="lName" class="formInput" type="text" placeholder="votre nom" formControlName="lastName">
+            <input id="birth" class="formInput" type="date" formControlName="birthday">
+            <input id="emailField" class="formInput" type="email" placeholder="e-Mail" formControlName="email">
+            <input id="adress" class="formInput" type="text" placeholder="votre addresse" formControlName="address">
+            <input id="phone" class="formInput" type="text" placeholder="numéro de téléphone" formControlName="phone">
+            <input id="pswdField" class="formInput" [type]="showPswd" placeholder="Mot de Passe" formControlName="password">
+            <input id="cnfPswdField" class="formInput" [type]="showPswd" placeholder="confirmer mot de passe" formControlName="cnfPswd">
+            <label for="showPswd">Afficher le mot de passe</label>
+            <input id=showPswd  type ="checkbox" (change)="onShowPswd()">
+            <input id=connectButton class="formInput" class="submit" type="submit">
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="center">
+    <div class="main"> 
+        <label for="chk" aria-hidden="true" class="title">Match dans ma ville</label>
+    <table class="styled-table">
+        <thead>
+          <tr>
+            <th scope="col">équipe 1</th>
+            <th scope="col">équipe 2</th>
+            <th scope="col">Date de l'évènement</th>
+            <th scope="col">Ville</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let match of this.near;">
+              <td scope="row">{{match.firstTeam}} </td>
+              <td>{{match.secondTeam}} </td>
+              <td>{{match.date}} </td>
+              <td>{{match.location}} </td>
+            </tr>
+      
+      </table>
+    </div>
+    </div>

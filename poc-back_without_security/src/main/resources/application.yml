@@ -1,0 +1,23 @@
+Spring:
+  application:
+    name: foot
+  jpa:
+    database: MYSQL
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/foot
+    username: root
+    password: pocStartUpDb112412!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  error.whitelabel.enabled: false
+  servlet:
+    context-path: /
+
+management:
+  endpoints:
+    web:
+      base-path: "/"

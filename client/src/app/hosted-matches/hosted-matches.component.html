@@ -1,0 +1,29 @@
+<div class="center">
+    <div class="main"> 
+        <label for="chk" aria-hidden="true" class="title">Mes matchs</label>
+    <table class="styled-table">
+        <thead>
+          <tr>
+            <th scope="col">équipe 1</th>
+            <th scope="col">équipe 2</th>
+            <th scope="col">Date de l'évènement</th>
+            <th scope="col">Addresse de l'évènement</th>
+            <th scope="col">Liste des guests</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let match of this.hosted;">
+              <td scope="row">{{match.firstTeam}} </td>
+              <td>{{match.secondTeam}} </td>
+              <td>{{match.date}} </td>
+              <td>{{match.location}} </td>
+              <td >
+                  <div *ngFor="let guest of match.guests">
+                    <p>{{guest.firstName}}</p><span> &nbsp;</span>
+                  </div>
+              </td>
+            </tr>
+      
+      </table>
+    </div>
+    </div>

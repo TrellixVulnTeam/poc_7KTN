@@ -1,0 +1,11 @@
+ul{
+    text-align:center;
+}
+span{
+    color: white !important;
+}
+.navbar-nav{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}

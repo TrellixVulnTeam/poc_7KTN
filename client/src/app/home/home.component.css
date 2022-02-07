@@ -1,0 +1,79 @@
+.button {
+  background-color: #52A256;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+.container{
+  padding: 5px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.button{
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+
+.main{
+width: 55%;
+height: 200px;
+background: #296E42;
+overflow: hidden;
+border-radius: 10px;
+box-shadow: 5px 20px 50px #000;
+text-align: center;
+}
+label.title{
+color: #fff;
+font-size: 2.5em;
+justify-content: center;
+display: flex;
+margin: 20px;
+font-weight: bold;
+cursor: pointer;
+transition: .5s ease-in-out;
+}
+label.equipes{
+color: black;
+font-size: 2.2em;
+justify-content: center;
+display: flex;
+font-weight: bold;
+cursor: pointer;
+}
+label.vs{
+color: #fff;
+font-size: 2.2em;
+justify-content: center;
+margin-left: 15px;
+margin-right: 15px;
+display: flex;
+font-weight: bold;
+cursor: pointer;
+}
+.inline{
+display: flex;
+justify-content: center;
+}

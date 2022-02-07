@@ -1,0 +1,13 @@
+.background{
+    background-image: url("../src/assets/images/broken_concrete.jpg");
+    min-height:100%;
+    opacity: 90%;
+    background-size: cover;
+}
+html,body{
+    height:100%;
+    width: 100%;
+}
+p{
+    color:white;
+}

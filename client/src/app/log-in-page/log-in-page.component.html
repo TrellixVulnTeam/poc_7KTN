@@ -1,0 +1,18 @@
+<div class="center">
+    <div class="main">  	
+	<input type="checkbox" id="chk" aria-hidden="true">
+    <div class="signup">
+    <form [formGroup]="loginForm" method="post"  (ngSubmit)="onConnect()">
+        <label for="chk" aria-hidden="true" class="title">Se connecter</label>
+        <input class="place" id="emailField" type="email" placeholder="email" formControlName="email">
+        <input class="place" id="pswdField" [type]="showPswd" placeholder="pswd" formControlName="pswd">
+        <label for="showPswd" ><p>Afficher le mot de passe</p></label>
+        <input id=showPswd type ="checkbox" (change)="onShowPswd()">
+        <input id=connectButton class="submit" type="submit">
+    </form>
+
+    <button id="newAccnt" (click)="onNewAccnt()" routerLink="/sign-up" class="nav-link">Je n'ai pas de compte</button>
+    <button id="frgtPswd" (click)="onFrgtPswd()" class="nav-link"routerLink="/forgot-pswd" >Mot de passe oublié</button>
+
+    </div>
+</div>

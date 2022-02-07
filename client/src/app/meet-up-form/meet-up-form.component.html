@@ -1,0 +1,14 @@
+<div class="center">
+    <div class="main">  	
+        <input type="checkbox" id="chk" aria-hidden="true">
+        <div class="signup">
+        <form [formGroup]="MeetUpForm" method="post"  (ngSubmit)="onMeetUp()">
+            <label for="chk" aria-hidden="true" class="title">Créer un Meet-Up</label>
+            <input id="date" class="formInput" type="date" formControlName="date">
+            <input id="teamField" class="formInput" type="text" placeholder="Première équipe" formControlName="firstTeam">
+            <input id="teamField" class="formInput" type="text" placeholder="Deuxième équipe" formControlName="secondTeam">
+            <input id="teamField" class="formInput" type="text" placeholder="Ville" formControlName="location">
+            <input id=meetupButton class="formInput" class="submit" type="submit">
+        </form>
+    </div>
+</div>

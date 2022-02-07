@@ -1,0 +1,35 @@
+<div class="center">
+<div class="card">
+    <div class="img">
+      <img src="../../assets/images/photo_profil.jpg">
+      
+    </div>
+    <div class="infos">
+      <div class="name">
+        <h2>{{currentUser.firstName}}</h2>
+        <h4>Membre depuis le {{currentUser.joined}}</h4>
+      </div>
+      <p class="text">
+        Habite à : {{currentUser.address}}
+      </p>
+      <ul class="stats">
+        <li>
+          <h3>8</h3>
+          <h4>Hosts</h4>
+        </li>
+        <li>
+          <h3>12</h3>
+          <h4>Guests</h4>
+        </li>
+        <li>
+          <h3>4/5</h3>
+          <h4>note</h4>
+        </li>
+      </ul>
+      <div class="links">
+        <button class="follow" routerLink="/hosted">Mes matchs</button>
+        <button class="view">Edit profile</button>
+      </div>
+    </div>
+  </div>
+</div>

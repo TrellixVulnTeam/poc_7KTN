@@ -1,0 +1,12 @@
+<div class="center">
+    <div class="main">  	
+	<input type="checkbox" id="chk" aria-hidden="true">
+    <div class="signup">
+    <form [formGroup]="retrieveForm" method="post"  (ngSubmit)="onRetrieve()">
+        <label for="chk" aria-hidden="true" class="title">Mot de Passe Oublié</label>
+        <label for="chk" aria-hidden="true" class="instructions">Veuillez entrer votre email pour récupérer vos informations de connexions</label>
+        <input id="emailField" type="email" placeholder="email" formControlName="email" class="formInput">
+        <input class="submit" type="submit">
+    </form>
+    </div>
+</div>
