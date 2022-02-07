@@ -1,4 +1,4 @@
-![alt text](model.png)
+![class diagram](./model.png)
 
 # End points available
 
